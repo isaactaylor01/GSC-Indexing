@@ -22,7 +22,7 @@ class IndexingController extends Controller
 
             // Use URL_UPDATED for new or updated pages.
             $urlNotification = new Google_Service_Indexing_UrlNotification([
-                'url' => "https://photography-equipment.co.uk/blog/best-camera-straps-for-travel-photography",
+                'url' => "https://photography-equipment.co.uk/lenses/polarizing-filters",
                 'type' => 'URL_UPDATED'
             ]);
 
