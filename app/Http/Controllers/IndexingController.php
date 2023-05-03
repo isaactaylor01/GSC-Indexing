@@ -13,7 +13,7 @@ class IndexingController extends Controller
         try {
             $googleClient = new Google\Client();
 
-            $path = storage_path('app/credentials/photography-equipment-384011-baddaf7b836d.json');
+            $path = storage_path('SERVICE_ACCOUNT_CREDENTIALS.json');
 
             // Add here location to the JSON key file that you created and downloaded earlier.
             $googleClient->setAuthConfig($path);
@@ -22,7 +22,7 @@ class IndexingController extends Controller
 
             // Use URL_UPDATED for new or updated pages.
             $urlNotification = new Google_Service_Indexing_UrlNotification([
-                'url' => "https://photography-equipment.co.uk/lenses/polarizing-filters",
+                'url' => "URL",
                 'type' => 'URL_UPDATED'
             ]);
 
