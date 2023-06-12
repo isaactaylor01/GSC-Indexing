@@ -8,12 +8,14 @@ use Google_Service_Indexing_UrlNotification;
 
 class IndexingController extends Controller
 {
-    public function indexing()
+    public function indexing(\App\Http\Requests\indexRequest $request): \Illuminate\Http\JsonResponse
     {
+        $validated = $request->validated();
+
         try {
             $googleClient = new Google\Client();
 
-            $path = storage_path('SERVICE_ACCOUNT_CREDENTIALS.json');
+            $path = storage_path('app/credentials/photography-equipment-384011-baddaf7b836d.json');
 
             // Add here location to the JSON key file that you created and downloaded earlier.
             $googleClient->setAuthConfig($path);
@@ -22,7 +24,7 @@ class IndexingController extends Controller
 
             // Use URL_UPDATED for new or updated pages.
             $urlNotification = new Google_Service_Indexing_UrlNotification([
-                'url' => "URL",
+                'url' => $validated['url'],
                 'type' => 'URL_UPDATED'
             ]);
 
@@ -30,5 +32,7 @@ class IndexingController extends Controller
         } catch (\Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
+
+        return response()->json(['result' => $result, 'message' => 'completed']);
     }
 }
